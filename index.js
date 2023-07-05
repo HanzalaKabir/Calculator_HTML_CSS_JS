@@ -47,7 +47,19 @@ document.addEventListener("keyup", (event) => {
     }
   }
 });
-
+function myFunction(x) {
+  if (x.matches) {
+    // If media query matches
+    equation.readOnly = true;
+    console.log("readonly");
+  } else {
+    equation.readOnly = false;
+    console.log("N-readonly");
+  }
+}
+var x = window.matchMedia("(max-width: 700px)");
+myFunction(x); // Call listener function at run time
+x.addListener(myFunction); // Attach listener function on state changes
 function calculate() {
   // console.log(userInput);
   let operand1 = "";

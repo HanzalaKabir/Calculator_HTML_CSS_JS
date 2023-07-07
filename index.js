@@ -57,85 +57,13 @@ function myFunction(x) {
     console.log("N-readonly");
   }
 }
+
 var x = window.matchMedia("(max-width: 700px)");
-myFunction(x); // Call listener function at run time
-x.addListener(myFunction); // Attach listener function on state changes
+myFunction(x);
+x.addListener(myFunction); 
 function calculate() {
   // console.log(userInput);
-  let operand1 = "";
-  let operand2 = "";
-  let i = 0;
-  while (
-    userInput[i] != "+" &&
-    userInput[i] != "-" &&
-    userInput[i] != "*" &&
-    userInput[i] != "/" &&
-    userInput[i] != "%"
-  ) {
-    if (i === userInput.length) {
-      break;
-    }
-    operand1 = operand1 + userInput[i];
-    i++;
-  }
-  operator = userInput[i];
-  i++;
-  while (i < userInput.length) {
-    operand2 = operand2 + userInput[i];
-    i++;
-  }
-  switch (operator) {
-    case "+":
-      operand1 = Number(operand1);
-      operand2 = Number(operand2);
-      if (operand1 === "") {
-        operand1 = 0;
-      }
-      if (operand2 === "") {
-        operand2 = 0;
-      }
-      equation.value = operand1 + operand2;
-      break;
-    case "-":
-      operand1 = Number(operand1);
-      operand2 = Number(operand2);
-      if (operand1 === "") {
-        operand1 = 0;
-      }
-      if (operand2 === "") {
-        operand2 = 0;
-      }
-      equation.value = operand1 - operand2;
-      break;
-    case "*":
-      if (operand1 === "" || operand2 === "") {
-        display.classList.add("error");
-      } else {
-        operand1 = Number(operand1);
-        operand2 = Number(operand2);
-        display.classList.remove("error");
-        equation.value = operand1 * operand2;
-        break;
-      }
-    case "/":
-      if (operand1 === "" || operand2 === "") {
-        display.classList.add("error");
-      } else {
-        operand1 = Number(operand1);
-        operand2 = Number(operand2);
-        display.classList.remove("error");
-        equation.value = operand1 / operand2;
-        break;
-      }
-    case "%":
-      if (operand1 === "" || operand2 === "") {
-        display.classList.add("error");
-      } else {
-        operand1 = Number(operand1);
-        operand2 = Number(operand2);
-        display.classList.remove("error");
-        equation.value = operand1 % operand2;
-        break;
-      }
-  }
+  let result = Function("return " + userInput)();
+  console.log(result);
+  equation.value = result;
 }
